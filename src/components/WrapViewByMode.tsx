@@ -4,12 +4,13 @@ import Animated, {
   FadeIn,
   FadeInDown,
 } from 'react-native-reanimated';
+import type { AnimatedStyleHandle } from 'react-native-reanimated/lib/typescript/hook/commonTypes';
 
 interface WrapViewByModeProps {
   children: React.ReactNode;
   mode: 'default' | 'bottom';
-  keyboardAdjustmentForBottomMode: StyleProp<ViewStyle>;
-  keyboardAdjustmentForDefaultMode: StyleProp<ViewStyle>;
+  keyboardAdjustmentForBottomMode: AnimatedStyleHandle;
+  keyboardAdjustmentForDefaultMode: AnimatedStyleHandle;
   style: StyleProp<ViewStyle>;
 }
 
