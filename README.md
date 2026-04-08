@@ -2,12 +2,13 @@
 
 A high-performance, customizable, and interactive dropdown component for React Native. Built with Reanimated to ensure buttery-smooth.
 
+## Demo
 
-## Version Requirements
+[![Demo]()](https://github.com/user-attachments/assets/09912cdb-0585-460b-adf4-6fdc1b71d544)
 
-- Requires [react-native-reanimated](https://github.com/software-mansion/react-native-reanimated) `>=3`.
-- Recommended Node.js version for local build/release: **22 LTS**.
+## Requirements
 
+- [react-native-reanimated](https://github.com/software-mansion/react-native-reanimated) `>=3`.
 
 ## Installation
 ```sh
@@ -15,14 +16,6 @@ npm install @duocvo/react-native-dropdown
 #or
 yarn add @duocvo/react-native-dropdown
 ```
-
-## Demo
-
-#### Code provided in Examples folder.
-
-<p float="left">
-	<img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdW14YmdieGwwZWJuOWhuMmx5NHdjZW4yd2RodzlnbW1tempkODdhMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/UBJ29mBh2GUGAaf6gk/giphy.gif" width="300" height="650">
-</p>
 
 ## Usage
 
