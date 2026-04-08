@@ -67,6 +67,7 @@
   },
   "homepage": "https://github.com/VoDucDuoc/react-native-dropdown#readme",
   "publishConfig": {
+    "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
