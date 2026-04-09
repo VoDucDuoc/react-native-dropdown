@@ -10,6 +10,7 @@ import {
   FlatList,
   Platform,
   Modal,
+  Keyboard,
 } from 'react-native';
 import { isExist } from './helpers/isExist';
 import Input from './components/Input';
@@ -91,6 +92,7 @@ const Dropdown = (
   } = useLayoutDropdown(dropdownStyle, dropdownPositionMode, keyboardHeight);
 
   const closeDropdown = useCallback(() => {
+    Keyboard.dismiss();
     onRequestClose();
     setSearchTxt('');
     onBlur?.();
@@ -344,7 +346,6 @@ const Dropdown = (
               showsVerticalScrollIndicator={showsVerticalScrollIndicator}
               contentContainerStyle={dropdownContentContainerStyle}
               keyboardShouldPersistTaps="always"
-              keyboardDismissMode="interactive"
               initialNumToRender={12}
               maxToRenderPerBatch={12}
               windowSize={10}

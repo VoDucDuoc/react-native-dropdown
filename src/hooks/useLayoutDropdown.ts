@@ -234,10 +234,14 @@ export const useLayoutDropdown = (
     getBottomModeStyle,
   ]);
 
-  const onRequestClose = () => {
+  const onRequestClose = useCallback(() => {
+    // Reset keyboard offsets immediately to avoid a one-frame jump
+    // when the dropdown is reopened right after closing.
+    translateYKeyboardBottom.value = 0;
+    translateYKeyboardDefault.value = 0;
     setIsVisible(false);
     setIsFocusedSearchInput(false);
-  };
+  }, [translateYKeyboardBottom, translateYKeyboardDefault]);
 
   return {
     isVisible,
