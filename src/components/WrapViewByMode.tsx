@@ -39,7 +39,7 @@ const WrapViewByMode = ({
   }
   return (
     <Animated.View
-      entering={FadeIn.duration(160)}
+      entering={FadeIn}
       style={[
         style,
         keyboardAdjustmentForDefaultMode,

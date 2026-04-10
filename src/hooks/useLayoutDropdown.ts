@@ -34,7 +34,6 @@ export const useLayoutDropdown = (
   const [buttonLayout, setButtonLayout] = useState<ButtonLayout | null>(null);
   const [isFocusedSearchInput, setIsFocusedSearchInput] = useState(false);
   const [defaultModeStyle, setDefaultModeStyle] = useState<Partial<ViewStyle> | null>(null);
-
   const translateYKeyboardBottom = useSharedValue(0);
   const translateYKeyboardDefault = useSharedValue(0);
   const defaultTopSV = useSharedValue<number>(0);
@@ -176,6 +175,10 @@ export const useLayoutDropdown = (
 
   const onDropdownButtonLayout = useCallback((w: number, h: number, px: number, py: number) => {
     setButtonLayout({ w, h, px, py });
+    // Reset transform offsets on every open-measure cycle so the next
+    // presentation starts from a neutral position without affecting close.
+    translateYKeyboardBottom.value = 0;
+    translateYKeyboardDefault.value = 0;
 
     if (dropdownPositionMode === 'default') {
       const { style } = calculateDefaultModeStyle(
@@ -191,7 +194,15 @@ export const useLayoutDropdown = (
       defaultBottomSV.value = typeof style.bottom === 'number' ? style.bottom : 0;
       return
     }
-  }, [defaultBottomSV, defaultTopSV, dropdownHeight, dropdownPositionMode, dropdownStyle]);
+  }, [
+    defaultBottomSV,
+    defaultTopSV,
+    dropdownHeight,
+    dropdownPositionMode,
+    dropdownStyle,
+    translateYKeyboardBottom,
+    translateYKeyboardDefault,
+  ]);
 
   const keyboardAdjustmentForBottomMode = useAnimatedStyle(() => {
     return {
@@ -235,13 +246,9 @@ export const useLayoutDropdown = (
   ]);
 
   const onRequestClose = useCallback(() => {
-    // Reset keyboard offsets immediately to avoid a one-frame jump
-    // when the dropdown is reopened right after closing.
-    translateYKeyboardBottom.value = 0;
-    translateYKeyboardDefault.value = 0;
     setIsVisible(false);
     setIsFocusedSearchInput(false);
-  }, [translateYKeyboardBottom, translateYKeyboardDefault]);
+  }, []);
 
   return {
     isVisible,

@@ -310,50 +310,52 @@ const Dropdown = (
         )}
       </TouchableOpacity>
 
-      {isVisible && (
-        <Modal
-          onRequestClose={closeDropdown}
-          transparent={true}
-          statusBarTranslucent={statusBarTranslucent}
-          visible={isVisible}
-          animationType="fade"
-        >
-          <TouchableOpacity
-            activeOpacity={1}
-            onPress={closeDropdown}
-            style={{
-              flex: 1,
-              backgroundColor: dropdownOverlayColor || 'rgba(0, 0, 0, 0.5)',
-            }}
-          />
-          <WrapViewByMode
-            mode={dropdownPositionMode}
-            keyboardAdjustmentForBottomMode={keyboardAdjustmentForBottomMode}
-            keyboardAdjustmentForDefaultMode={keyboardAdjustmentForDefaultMode}
-            style={dropDownStyleByMode}
-          >
-            <FlatList
-              testID={testID}
-              data={dataArr}
-              extraData={flatListExtraData}
-              keyExtractor={keyExtractor}
-              ref={dropDownFlatListRef}
-              renderItem={renderFlatListItem}
-              ListHeaderComponent={listHeader ?? undefined}
-              stickyHeaderIndices={search && buttonLayout ? [0] : undefined}
-              onEndReached={() => onScrollEndReached?.()}
-              onEndReachedThreshold={0.5}
-              showsVerticalScrollIndicator={showsVerticalScrollIndicator}
-              contentContainerStyle={dropdownContentContainerStyle}
-              keyboardShouldPersistTaps="always"
-              initialNumToRender={12}
-              maxToRenderPerBatch={12}
-              windowSize={10}
-              removeClippedSubviews={Platform.OS === 'android'}
+      <Modal
+        onRequestClose={closeDropdown}
+        transparent={true}
+        statusBarTranslucent={statusBarTranslucent}
+        visible={isVisible}
+        animationType={dropdownPositionMode === 'default' ? 'none' : 'fade'}
+      >
+        {isVisible && (
+          <>
+            <TouchableOpacity
+              activeOpacity={1}
+              onPress={closeDropdown}
+              style={{
+                flex: 1,
+                backgroundColor: dropdownOverlayColor || 'rgba(0, 0, 0, 0.5)',
+              }}
             />
-          </WrapViewByMode>
-        </Modal>
-      )}
+            <WrapViewByMode
+              mode={dropdownPositionMode}
+              keyboardAdjustmentForBottomMode={keyboardAdjustmentForBottomMode}
+              keyboardAdjustmentForDefaultMode={keyboardAdjustmentForDefaultMode}
+              style={dropDownStyleByMode}
+            >
+              <FlatList
+                testID={testID}
+                data={dataArr}
+                extraData={flatListExtraData}
+                keyExtractor={keyExtractor}
+                ref={dropDownFlatListRef}
+                renderItem={renderFlatListItem}
+                ListHeaderComponent={listHeader ?? undefined}
+                stickyHeaderIndices={search && buttonLayout ? [0] : undefined}
+                onEndReached={() => onScrollEndReached?.()}
+                onEndReachedThreshold={0.5}
+                showsVerticalScrollIndicator={showsVerticalScrollIndicator}
+                contentContainerStyle={dropdownContentContainerStyle}
+                keyboardShouldPersistTaps="always"
+                initialNumToRender={12}
+                maxToRenderPerBatch={12}
+                windowSize={10}
+                removeClippedSubviews={Platform.OS === 'android'}
+              />
+            </WrapViewByMode>
+          </>
+        )}
+      </Modal>
     </View>
   );
 };
