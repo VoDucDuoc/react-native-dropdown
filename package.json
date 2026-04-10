@@ -1,6 +1,6 @@
 {
   "name": "@duocvo/react-native-dropdown",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A high-performance, customizable, and interactive dropdown component for React Native. Built with Reanimated to ensure buttery-smooth.",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
